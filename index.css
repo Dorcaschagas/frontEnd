@@ -1,0 +1,86 @@
+.mensagemCustom {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 100px !important;
+    /* font-size: .8em; */
+}
+
+thead {
+    font-size: 1em;
+}
+
+.mensagemCustom:hover {
+    width: auto;
+    white-space: normal;
+}
+
+.input {
+    width: 10px;
+    height: 10px;
+    padding: 8px;
+    margin-right: 5px;
+    position: relative;
+}
+
+.fa-check {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+label {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.msgAviso {
+    position: relative;
+    margin: 5px 0;
+}
+
+.msgAviso span {
+    background-color: yellow;
+    padding: 0 2px;
+}
+
+.msgAviso:hover::before {
+    content: "Para que sua mensagem seja enviada com sucesso, escreva o nome para o qual as mensagens serão enviadas (pessoa ou grupo) exatamente como aparece no WhatsApp.";
+    position: absolute;
+    width: auto;
+    padding: 2px;
+    top: 40px;
+    left: 0;
+    background-color: grey;
+    color: white;
+    border-radius: 5px;
+}
+
+.listIcones{
+    list-style: none;
+}
+
+.listIcones{
+    margin-top: 15px !important;
+}
+
+.larguraTela{
+    max-width: (100%/6);
+}
+
+/* 
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+
+::-webkit-scrollbar-thumb {
+    background-color: blue;
+    border-radius: 5px;
+}
+
+
+::-webkit-scrollbar-track {
+    background-color: red;
+} */

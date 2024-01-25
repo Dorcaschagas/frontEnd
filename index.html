@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mensagens Agendadas.</title>
+    <link rel="stylesheet" href="./bootstrap/bootstrap.css">
+
+    <!-- <link rel="shortcut icon" href="image/th (1).jfif" type="image/png"> -->
+
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body class="m-1">
+    <main class="m-1 row">
+
+        <div class="p-0 my-3">
+            <div class="d-flex">
+                <input class="form-control my-2" type="text" placeholder="Enviar para..." id="enviarPara">
+                <div >
+                    <ul class="listIcones d-flex p-0 mt-1">
+                        <li class="border p-1 m-1">
+                            🦷
+                        </li>
+                        <li class="border p-1 m-1">
+                            🇧🇷
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <p class="msgAviso "><span class="aviso">AVISO</span>:Por favor, Digite o nome
+                (grupo ou contato) exatamente como eles aparecem no whatsapp!</p>
+        </div>
+
+        <div class="caixaMensagem p-0">
+            <div class=" row g-0" id="resposta">
+                <textarea class="col-12 m-0 form-control" name="" id="mensagem" cols="30" rows="10"
+                    placeholder="Mensagem"></textarea>
+            </div>
+            <div class=" my-2 p-0 row">
+                <div class="col-6">
+                    <input class=" form-control" type="date" name="data" id="data">
+                </div>
+                <div class="col-6">
+                    <input class="form-control" type="time" name="hora" id="hora">
+                </div>
+                <div class="col-12 col-sm-3 d-flex my-3 text-end">
+                    <button onclick="limparMensagem()" class="btn btn-secondary ms-2 w-50">Limpar</button>
+
+                    <button onclick="sendMensagem()" class="btn btn-primary w-50 ms-2">Enviar</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-0">
+            <button style="width: auto; height: 40px;" class="btn border mb-2 filtro"><i class="fas fa-gear"></i> filtro
+            </button>
+            <div class="d-grid border d-none titleTable" style="width: auto;">
+
+                <label for="id" class="id">
+                    <input type="checkbox" name="id" id="id" class="d-none">
+                    <div class="input border"><i class="fas fa-check d-none"></i></div>
+                    ID
+                </label>
+
+                <label for="grupo" class="grupo">
+                    <input type="checkbox" name="grupo" id="grupo" class="d-none">
+                    <div class="input border"><i class="fas fa-check d-none"></i></div>
+                    Grupo
+                </label>
+
+                <label for="table-data" class="data">
+                    <input type="checkbox" name="table-data" id="table-data" class="d-none">
+                    <div class="input border"><i class="fas fa-check d-none"></i></div>
+                    Data
+                </label>
+
+                <label for="table-hora" class="hora">
+                    <input type="checkbox" name="table-hora" id="table-hora" class="d-none">
+                    <div class="input border"><i class="fas fa-check d-none"></i></div>
+                    Hora
+                </label>
+
+                <label for="table-mensagem" class="mensagem">
+                    <input type="checkbox" name="table-mensagem" id="table-mensagem" class="d-none">
+                    <div class="input border"><i class="fas fa-check d-none"></i></div>
+                    Mesangem
+                </label>
+
+                <div style="max-width: 155px;" class="p-0">
+                    <button class="btn btn-secondary limpar-filtor">limpar</button>
+                    <button class="btn btn-primary aplicar-filtro">aplicar</button>
+                </div>
+
+            </div>
+        </div>
+        <div class="border p-0">
+            <table class="table table-striped m-0">
+                <thead>
+                    <tr>
+                        <th class="larguraTela filtro-id" scope="col">ID</th>
+                        <th class="larguraTela filtro-grupo" scope="col">Grupo</th>
+                        <th class="larguraTela filtro-data" scope="col">Data</th>
+                        <th class="larguraTela filtro-hora" scope="col">Hora</th>
+                        <th class="larguraTela filtro-msg" scope="col">Mensagem</th>
+                        <th class="larguraTela text-center" scope="col">apagar</th>
+                        <th class="larguraTela text-center" scope="col">editar</th>
+                    </tr>
+                </thead>
+                <tbody id="tabela"></tbody>
+            </table>
+        </div>
+        <div class="text-end p-0">
+            <button class="my-3 btn bg-light border w-25 listaFront">Lista</button>
+
+        </div>
+    </main>
+
+    <!-- scripts -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+    <script src="./bootstrap/bootstrap.js"></script>
+
+    <script src="index.js"></script>
+
+</body>
+
+</html>

@@ -2,14 +2,17 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-    max-width: 100px !important;
+    max-width: 60px !important;
     /* font-size: .8em; */
 }
 
 thead {
-    font-size: 1em;
+    font-size: .8em;
 }
 
+td{
+    font-size: .8em;
+}
 .mensagemCustom:hover {
     width: auto;
     white-space: normal;
@@ -23,11 +26,11 @@ thead {
     position: relative;
 }
 
-.fa-check {
+.bi-check {
     position: absolute;
-    top: 0;
+    top: -5px;
     left: 0;
-}
+} 
 
 label {
     display: flex;
@@ -66,10 +69,13 @@ label {
 }
 
 .larguraTela{
-    max-width: (100%/6);
+    max-width: calc(100%/5);
 }
 
-/* 
+td{
+    width: calc(100%/5);
+}
+
 ::-webkit-scrollbar {
     width: 5px;
 }
@@ -82,5 +88,33 @@ label {
 
 
 ::-webkit-scrollbar-track {
-    background-color: red;
-} */
+    background-color: transparent;
+}
+
+.btnEmoji{
+    position: absolute;
+    right: 55px;
+    top: 45px;
+    z-index: 1;
+}
+
+.cxFuctions{
+    position: fixed;
+    bottom: 40px;
+    left: 20px;
+    z-index: 1;
+    width: 38px;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    background-color: grey;
+    border-radius: 5px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.cxFuctionsAtivo{
+    transform: scaleY(4);
+    border-radius: 0;
+    bottom: 80px;
+}

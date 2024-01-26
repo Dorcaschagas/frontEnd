@@ -7,7 +7,7 @@ let tempo = 60000;
 function sendMensagem() {
     primeiraMsg = false
 
-    if(primeiraMsg){
+    if (primeiraMsg) {
         tempo = 130000
     }
     let contato = $('#enviarPara').val()
@@ -44,7 +44,7 @@ function addLista() {
 
     $('#tabela').empty();
 
-    if(lista.length < 1){
+    if (lista.length < 1) {
         $('#tabela').append(`<tr class="text-center"><td colspan="7">Lista Vazia...</td></tr>`)
     }
 
@@ -56,8 +56,8 @@ function addLista() {
             <td class="mensagemCustom filtro-data">${lista[i][2]}</td>
             <td class="mensagemCustom filtro-hora">${lista[i][3]}</td>
             <td class="mensagemCustom filtro-msg">${lista[i][1]}</td>
-            <td class="mensagemCustom border text-center" onclick="apagaItemDaLista(${i})"><i class="fas fa-trash-alt"></i></td>
-            <td class="mensagemCustom border text-center" onclick="editar(${i})"><i class="fas fa-pencil-alt"></i></td>
+            <td class="mensagemCustom border text-center" onclick="apagaItemDaLista(${i})"><i class="bi bi-trash"></i></td>
+            <td class="mensagemCustom border text-center" onclick="editar(${i})"><i class="bi bi-pencil"></i></td>
         </tr>)`)
     }
 }
@@ -124,7 +124,7 @@ function checandoDatas(dataAtual, horaAtual) {
                     "Content-Type": "application/json"
                 },
                 "data": JSON.stringify({
-                    'contato':contato,
+                    'contato': contato,
                     "mensagem": msg,
                     "data": dataMsg,
                     "hora": horamsg,
@@ -213,7 +213,7 @@ $('.listaFront').click(function () {
     $(".caixaMensagem").toggleClass('d-none')
     if (click) {
         $(this).html('Voltar')
-    }else{
+    } else {
         $(this).html('Lista')
     }
 })
@@ -224,3 +224,87 @@ $('.listIcones li').click(function () {
     $("#enviarPara").val(valorAtual + conteudo)
     // console.log($("#enviarPara").val())
 })
+
+// localStorage.clear("Contatos") 
+var listaContatos = JSON.parse(localStorage.getItem("Contatos")) || [];
+
+$('#historico').click(function () {
+    $('#historico_Contato').removeClass('d-none')
+    $('.corpoMensagem').addClass('d-none')
+    historicoContatos()
+})
+
+$('.voltarCorpoMensagem').click(function () {
+    $('#historico_Contato').addClass('d-none')
+    $('.corpoMensagem').removeClass('d-none')
+})
+
+$('.salvaContato').click(function () {
+    if ($('#enviarPara').val() !== "") {
+        $('#historico_Contato').removeClass('d-none')
+        $('.corpoMensagem').addClass('d-none')
+
+        if (listaContatos.includes($('#enviarPara').val())) {
+            alert("Este contato já está na lista.");
+        } else {
+            listaContatos.push($('#enviarPara').val());
+    
+            localStorage.setItem("Contatos", JSON.stringify(listaContatos));
+    
+            historicoContatos()
+        }
+    }
+})
+
+function historicoContatos() {
+    $('#tabelaHistorico').empty();
+    
+    listaContatos.sort();
+
+    for (let i = 0; i < listaContatos.length; i++) {
+        $('#tabelaHistorico').append(
+            `<tr>
+                <td>${i + 1}</td>
+                <td>${listaContatos[i]}</td>
+                <td onclick="selecionarCtt('${listaContatos[i]}')"><button class="border">Selecionar</button></td>
+                <td><button class="border" onclick="apagaContato(${i})"><i class="bi bi-trash"></i></button></td>
+                <td class="mensagemCustom border text-center" onclick="editar(${i} , '${listaContatos[i]}')"><i class="bi bi-pencil"></i></td>
+            </tr>`
+        );
+    }
+}
+
+function apagaContato(index) {
+    var res = confirm('Quer apagar o contato?')
+    if (res) {
+        listaContatos.splice(index, 1);
+        console.log(listaContatos)
+        localStorage.setItem("Contatos", JSON.stringify(listaContatos));
+        historicoContatos();
+    }
+}
+
+function editar(index, nome) {
+    listaContatos.splice(index, 1);
+    localStorage.setItem("Contatos", JSON.stringify(listaContatos));
+    $('#enviarPara').val(`${nome}`)
+    $('#historico_Contato').addClass('d-none')
+    $('.corpoMensagem').removeClass('d-none')
+}
+
+function selecionarCtt(nome){
+    $('#enviarPara').val(`${nome}`)
+    $('#historico_Contato').addClass('d-none')
+    $('.corpoMensagem').removeClass('d-none')
+}
+
+$(".btnEmoji").click(function(){
+    $(".emoji ").toggleClass('d-none')
+})
+
+
+$(".cxFuctions").click(function(){
+    $(this).toggleClass('cxFuctionsAtivo')
+    $(".iconeMais").toggleClass('d-none')
+})
+
